@@ -28,7 +28,7 @@ variable max_size {
 
 variable desired_size {
   type = number
-  description = "Number max Nodes"
+  description = "Number Persistence Nodes"
   default = 3
 }
 
