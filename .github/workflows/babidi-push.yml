@@ -1,0 +1,29 @@
+name: Babidi Chatops
+
+on:
+  push:
+    branches:
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'
+jobs:
+  webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch names
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+    
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+            timeZone: 8
+            format: 'YYYY-MM-DD-HH-mm-ss'
+      - name: Deploy Stage
+        uses: fjogeleit/http-request-action@v1
+        with:
+            url: 'https://telegram-bot-asx.herokuapp.com/commitAction'
+            method: 'POST'
+            customHeaders: '{"Content-Type": "application/json"}'
+            data: '{ "commitHash" : "${{ github.event.commits[0].message }}", "repository" : "${{ github.event.repository.name }}" ,"branch" : "${{ steps.branch-name.outputs.current_branch }}", "userName" :  "${{ github.actor }}", "timestamp" : "${{ steps.time.outputs.time }}"}'
