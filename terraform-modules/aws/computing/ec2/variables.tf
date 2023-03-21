@@ -45,3 +45,11 @@ variable "subnet_id" {
   description = " Subnet Id"
   default     = "Subnet Id"
 }
+
+
+variable "tags" {
+  type        = any
+  description = "Tags json"
+  default = {
+    "project" : "teste"
+  }
