@@ -52,4 +52,6 @@ variable "tags" {
   description = "Tags json"
   default = {
     "project" : "teste"
+
   }
+}
