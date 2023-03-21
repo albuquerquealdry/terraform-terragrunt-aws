@@ -10,7 +10,7 @@ module "security_group" {
   ingress_rules       = ["http-80-tcp", "all-icmp"]
   egress_rules        = ["all-all"]
 
-  tags = local.tags
+  tags = var.tags
 }
 
 module "ec2_instance" {
@@ -26,10 +26,7 @@ module "ec2_instance" {
   vpc_security_group_ids = module.security_group.security_group_id
   subnet_id              = var.subnet_id
 
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-  }
+  tags = var.tags
 
   depends_on = [
     module.security_group
