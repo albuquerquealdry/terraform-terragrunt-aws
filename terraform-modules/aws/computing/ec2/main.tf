@@ -23,7 +23,7 @@ module "ec2_instance" {
   instance_type          = var.instance-type
   key_name               = var.pair
   monitoring             = var.monitoring
-  vpc_security_group_ids = module.security_group.security_group_id
+  vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_id              = var.subnet_id
 
   tags = var.tags
