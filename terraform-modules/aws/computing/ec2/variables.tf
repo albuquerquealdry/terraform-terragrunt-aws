@@ -46,7 +46,6 @@ variable "subnet_id" {
   default     = "Subnet Id"
 }
 
-
 variable "tags" {
   type        = any
   description = "Tags json"
@@ -54,4 +53,10 @@ variable "tags" {
     "project" : "teste"
 
   }
+}
+
+variable "user_data" {
+  type        = string
+  description = " Subnet Id"
+  default     = "echo hello world"
 }

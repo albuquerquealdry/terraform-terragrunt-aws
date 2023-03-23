@@ -25,7 +25,7 @@ module "ec2_instance" {
   monitoring             = var.monitoring
   vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_id              = var.subnet_id
-
+  user_data              = var.user_data 
   tags = var.tags
 
   depends_on = [
